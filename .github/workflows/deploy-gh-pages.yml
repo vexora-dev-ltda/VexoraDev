@@ -63,6 +63,11 @@ jobs:
           </html>
           HTML
 
+      - name: Disable Jekyll (create .nojekyll)
+        run: |
+          set -e
+          touch out/.nojekyll
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
