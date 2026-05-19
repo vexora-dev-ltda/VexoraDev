@@ -35,10 +35,9 @@ jobs:
           NEXT_PUBLIC_SITE_URL: 'https://vexora-dev-ltda.github.io/VexoraDev'
         run: npm run build && npm run export
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: ./out
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v5
+          branch: gh-pages
+          folder: out
+          token: ${{ secrets.GITHUB_TOKEN }}
