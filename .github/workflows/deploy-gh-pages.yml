@@ -9,11 +9,12 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -21,21 +22,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and export
+      - name: Build
         env:
-          GITHUB_PAGES: 'true'
           NEXT_PUBLIC_SITE_URL: 'https://vexora-dev-ltda.github.io/VexoraDev'
-        run: |
-          npm run build
+        run: npm run build
 
-      - name: Debug: show git remote and branch info
-        run: |
-          git --version || true
-          git remote -v || true
-          git branch --show-current || true
-          ls -la || true
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
