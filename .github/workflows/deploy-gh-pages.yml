@@ -36,6 +36,16 @@ jobs:
           NEXT_PUBLIC_SITE_URL: 'https://vexora-dev-ltda.github.io/VexoraDev'
         run: npm run build && npm run export
 
+      - name: Wrap `out` in repo folder for Pages
+        env:
+          REPO_NAME: 'VexoraDev'
+        run: |
+          set -e
+          mkdir -p out_temp/${REPO_NAME}
+          cp -a out/. out_temp/${REPO_NAME}/
+          rm -rf out/*
+          mv out_temp/* out/
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
