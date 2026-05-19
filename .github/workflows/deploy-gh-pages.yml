@@ -78,7 +78,7 @@ jobs:
       - name: Rewrite asset paths in index.html
         run: |
           set -e
-          sed -i 's|/_next/|/VexoraDev/assets-next/|g' out/VexoraDev/index.html || true
+          sed -i 's|/VexoraDev/_next/|/VexoraDev/assets-next/|g' out/VexoraDev/index.html || true
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
