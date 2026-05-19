@@ -68,6 +68,18 @@ jobs:
           set -e
           touch out/.nojekyll
 
+      - name: Rename _next to assets-next (bypass Jekyll underscore issue)
+        run: |
+          set -e
+          if [ -d "out/VexoraDev/_next" ]; then
+            mv out/VexoraDev/_next out/VexoraDev/assets-next
+          fi
+
+      - name: Rewrite asset paths in index.html
+        run: |
+          set -e
+          sed -i 's|/_next/|/VexoraDev/assets-next/|g' out/VexoraDev/index.html || true
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
