@@ -2,8 +2,10 @@ name: Auto Retry Failed Deploy
 
 on:
   workflow_run:
-    workflows: ["Deploy to GitHub Pages"]
-    types: [completed]
+    workflows:
+      - Deploy to GitHub Pages
+    types:
+      - completed
 
 jobs:
   rerun-on-failure:
