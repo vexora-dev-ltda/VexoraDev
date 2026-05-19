@@ -13,8 +13,8 @@
   "dependencies": {
     "framer-motion": "^12.39.0",
     "next": "16.2.6",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
@@ -26,6 +26,15 @@
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+  }
+  ,
+  "devDependenciesMeta": {
+    "gh-pages": {
+      "optional": false
+    }
+  },
+  "optionalDependencies": {
+    "gh-pages": "^5.0.0"
   }
   ,
   "homepage": "https://vexora-dev-ltda.github.io/VexoraDev"
