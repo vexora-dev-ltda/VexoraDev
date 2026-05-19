@@ -27,8 +27,16 @@ jobs:
         run: |
           npm run build
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Debug: show git remote and branch info
+        run: |
+          git --version || true
+          git remote -v || true
+          git branch --show-current || true
+          ls -la || true
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          branch: gh-pages
+          folder: out
+          token: ${{ secrets.GITHUB_TOKEN }}
