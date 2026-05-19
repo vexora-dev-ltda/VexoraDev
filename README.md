@@ -65,6 +65,16 @@ Observacoes:
 - Algumas funcoes do Next.js (SSR, App Router server features) NAO funcionarao no GitHub Pages. Este fluxo gera um site estatico com `next export`.
 - Caso queira voltar ao deploy no Vercel mais tarde, remova a branch `gh-pages` ou mude a configuracao de deploy.
 
+## Formulario de contato (Formspree)
+
+O projeto ja suporta envio via Formspree (recomendado para sites estaticos). Para ativar:
+
+1. Crie uma conta em https://formspree.io/ e configure um endpoint de formulario (form endpoint).
+2. No painel do GitHub para o repositorio, adicione um secret `NEXT_PUBLIC_FORMSPREE_ENDPOINT` com o valor do endpoint (ex: `https://formspree.io/f/xxxxxx`).
+3. Rode um novo deploy (push) para que a variavel seja embutida no build. O formulario entao enviara as mensagens para o Formspree.
+
+Se preferir nao usar Formspree, o formulario caira no email configurado (mailto) como fallback.
+
 ## Estrutura principal
 
 - `src/app/layout.tsx`: metadados globais e estrutura raiz

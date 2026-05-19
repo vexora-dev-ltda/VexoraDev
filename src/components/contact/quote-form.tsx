@@ -41,6 +41,7 @@ export function QuoteForm() {
   }, [form]);
 
   const emailHref = `mailto:${emailAddress}?subject=${encodeURIComponent("Solicitacao de orcamento - VexoraDev")}&body=${encodeURIComponent(contactMessage)}`;
+  const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "";
 
   function updateField(field: keyof FormState, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
@@ -54,6 +55,34 @@ export function QuoteForm() {
     setSubmitted(true);
 
     if (!isValid) {
+      return;
+    }
+
+    if (formspreeEndpoint) {
+      fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          company: form.company,
+          service: form.service,
+          message: form.message,
+        }),
+      })
+        .then(async (res) => {
+          if (res.ok) {
+            window.alert("Mensagem enviada com sucesso. Entraremos em contato em breve.");
+            setForm(initialState);
+          } else {
+            const text = await res.text();
+            console.error("Formspree error:", text);
+            window.location.href = emailHref;
+          }
+        })
+        .catch((err) => {
+          console.error("Formspree exception:", err);
+          window.location.href = emailHref;
+        });
       return;
     }
 
