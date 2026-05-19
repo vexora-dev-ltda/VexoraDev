@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VexoraDev Website
 
-## Getting Started
+Site institucional moderno da VexoraDev, desenvolvido com foco em design premium, performance e conversao.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router)
+- React
+- Tailwind CSS v4
+- Framer Motion
+- TypeScript
+
+## Como rodar
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra `http://localhost:3000` no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: ambiente de desenvolvimento
+- `npm run lint`: validacao de qualidade
+- `npm run build`: build de producao
+- `npm run start`: executa build em producao
 
-## Learn More
+## Deploy (Vercel)
 
-To learn more about Next.js, take a look at the following resources:
+1. Conecte seu repositório no Vercel (https://vercel.com) ou use o Vercel CLI.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Para deploy via Vercel CLI:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm i -g vercel
+vercel login
+vercel --prod
+```
 
-## Deploy on Vercel
+3. Defina a variável de ambiente `NEXT_PUBLIC_SITE_URL` no painel do Vercel para o domínio final (ex: `https://vexoradev.vercel.app` ou seu domínio personalizado). Isso faz com que o `metadataBase` seja populado corretamente.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+O arquivo `vercel.json` já está incluído para otimizar o deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy no GitHub Pages (opcao temporaria)
+
+Se voce prefere publicar 100% via GitHub Pages (site estatico), siga estes passos.
+
+1. Instale dependencias de deploy:
+
+```bash
+npm install
+npm install --save-dev gh-pages cross-env
+```
+
+2. Para exportar e publicar (este projeto sera exportado para `out/` e publicado na branch `gh-pages`):
+
+```bash
+npm run export:deploy
+```
+
+3. Verifique `https://vexora-dev-ltda.github.io/vexora-dev/` apos alguns minutos.
+
+Observacoes:
+- Algumas funcoes do Next.js (SSR, App Router server features) NAO funcionarao no GitHub Pages. Este fluxo gera um site estatico com `next export`.
+- Caso queira voltar ao deploy no Vercel mais tarde, remova a branch `gh-pages` ou mude a configuracao de deploy.
+
+## Estrutura principal
+
+- `src/app/layout.tsx`: metadados globais e estrutura raiz
+- `src/app/page.tsx`: composicao das secoes da landing page
+- `src/app/globals.css`: tokens visuais e estilos globais
+- `src/components/motion/reveal.tsx`: componentes reutilizaveis de animacao
+- `src/lib/site-data.ts`: dados das secoes (servicos, portfolio, processo)
+
+## SEO basico incluido
+
+- Title e description otimizados
+- Keywords
+- Open Graph basico
+- Hierarquia semantica de secoes

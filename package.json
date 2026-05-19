@@ -5,15 +5,19 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
+    "export:deploy": "cross-env GITHUB_PAGES=true next build && cross-env GITHUB_PAGES=true next export && gh-pages -d out",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "framer-motion": "^12.39.0",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -23,4 +27,6 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   }
+  ,
+  "homepage": "https://vexora-dev-ltda.github.io/VexoraDev"
 }
