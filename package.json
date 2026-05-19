@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next build",
     "export:deploy": "cross-env GITHUB_PAGES=true next build && gh-pages -d out",
     "start": "next start",
     "lint": "eslint"
